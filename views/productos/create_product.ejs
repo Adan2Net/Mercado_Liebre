@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head', {title:"Agregar y editar Producto",
+  namePage:"add_editProduct"}) %>
+
+<body>
+  <%- include('../partials/header') %>
+
+  <main>
+    <section class="information">
+      <div class="information-main">
+        <form action="/products/create" method="post" enctype="multipart/form-data" class="infor-product">
+          <div class="photo">
+            <img class="imagePreview" src="/images/logo.png" alt="" srcset="" />
+
+            <div class="div-avatar">
+              <i class="fa-solid fa-camera"></i>
+              <label for="productImage" class="label-avatar">Seleccionar imagen</label>
+              <input type="file" name="productImage" id="productImage" class="btn-changer" accept=".JPG, .JPEG, .PNG, .GIF" />
+              <span id="errorProductImage" class="showError"></span>
+            </div>
+          </div>
+          <div class="information-header">
+            <h3>INFORMACIÓN DEL PRODUCTO</h3>
+          </div>
+          <div class="infor-product-section">
+            <label for="name">Nombre:</label>
+            <input type="text" name="name" id="name" placeholder="Nombre" required />
+          </div>
+          <span class="text-error" id="errorName"> <% (typeof(errors) !='undefined' && errors.name) ?  errors.name.msg :"";%> </span>
+          <div class="infor-product-section">
+            <label for="specifications">Especificaciones:</label>
+            <textarea name="specifications" id="specifications"></textarea>
+          </div>
+          <span class="text-error" id="errorSpecifications"> <% (typeof(errors) !='undefined' && errors.specifications) ? errors.specifications.msg : "" %> </span>
+          <div class="infor-product-section">
+            <label for="warranty">Categoria:</label>
+            <select name="category" id="category">
+              <option value="">Selecciona una categoría</option>
+              <% categoryProduct.forEach(category=>{ %>
+              <option value="<%= category.id %>"><%= category.name %></option>
+              <%}) %>
+            </select>
+          </div>
+          <span class="text-error"> <%(typeof(errors) !='undefined' && errors.category)? errors.category.msg:"" %> </span>
+          <div class="infor-product-section">
+            <label for="warrantyText">Garantia:</label>
+            <input type="text" name="warrantyText" id="warrantyText" placeholder="Descripción de la Garantia" />
+          </div>
+          <%if(typeof(errors) !='undefined' && errors.warrantyText){%>
+          <span class="text-error"> <%= errors.warrantyText.msg %> </span>
+          <%}%>
+            <div class="infor-product-section">
+              <label>Medios de Pago:</label>
+              <div class="payment-methods">
+                <% paymentMethod.forEach(method=> { %>
+          <div class="payment-method">
+            <input type="checkbox" name="paymentMethod" value="<%= method.id %>" id="paymentMethod<%= method.id %>" />
+            <label for="paymentMethod<%= method.id %>"><img src="/images/methodLogos/<%= method.image %> " alt="" srcset="" /></label>
+          </div>
+          <%}); %>
+      </div>
+      </div>
+      <%if(typeof(errors) !='undefined' && errors.paymentMethod){%>
+      <span class="text-error"> <%= errors.paymentMethod.msg %> </span>
+      <%}%>
+            <div class="infor-product-section">
+              <label for="price">Precio:</label>
+              <input
+                type="number"
+                name="price"
+                id="price"
+                placeholder="Precio"
+              />
+            </div>
+            <%if(typeof(errors) !='undefined' && errors.price){%>
+      <span class="text-error"> <%= errors.price.msg %> </span>
+      <%}%>
+            <div class="infor-product-section">
+              <label for="discount">Descuento:</label>
+              <input
+                type="number"
+                name="discount"
+                id="discount"
+                placeholder="Descuento"
+              />
+            </div>
+            <%if(typeof(errors) !='undefined' && errors.discount){%>
+      <span class="text-error"> <%= errors.discount.msg %> </span>
+      <%}%>
+            <div class="infor-product-section btn-save-reset">
+              <button type="submit">Guardar</button>
+              <button type="reset">Borrar</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <%- include('../partials/footer') %>
+      <script src="/js/products/addCharacteristics.js"></script>
+      <script src="https://kit.fontawesome.com/f108e44f29.js" crossorigin="anonymous"></script>
+      <script src="/js/products/createProduct.js"></script>
+      <script src="/js/validationProduct.js"></script>
+</body>
+
+</html>

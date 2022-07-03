@@ -1,7 +1,6 @@
 {
   "name": "html_css",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -10,6 +9,21 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
-  }
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "i": "^0.3.7",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "2.18.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adan2Net/Mercado_Liebre.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Adan2Net/Mercado_Liebre/issues"
+  },
+  "homepage": "https://github.com/Adan2Net/Mercado_Liebre#readme",
+  "description": ""
 }
